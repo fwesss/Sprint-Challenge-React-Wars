@@ -5,10 +5,14 @@
   "author": "Westley Feller <feller.westley@gmail.com>",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "prop-types": "^15.7.2",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-scripts": "3.1.2",
-    "reactstrap": "^8.0.1"
+    "reactstrap": "^8.0.1",
+    "styled-components": "^4.4.0"
   },
   "devDependencies": {
     "eslint": "^6.5.0",
@@ -26,6 +30,8 @@
     "stylelint": "^11.0.0",
     "stylelint-config-prettier": "^6.0.0",
     "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^3.1.1",
     "stylelint-prettier": "^1.1.1",
     "stylelint-scss": "^3.11.1",

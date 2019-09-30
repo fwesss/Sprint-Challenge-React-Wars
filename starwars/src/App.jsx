@@ -1,18 +1,46 @@
-import React from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { CardColumns } from 'reactstrap';
 
-const App = () =>
-// Try to think through what state you'll need for this app before starting. Then build out
-// the state properties here.
+import Header from './components/Header/Header';
+import CharacterCard from './components/CharacterCard/CharacterCard';
 
-// Fetch characters from the star wars api in an effect hook. Remember, anytime you have a
-// side effect in a component, you want to think about which state and/or props it should
-// sync up with, if any.
-  (
-    <div className="App">
-      <h1 className="Header">React Wars</h1>
-    </div>
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+const App = () => {
+  const [swapiData, setSwapiData] = useState([]);
+  const [imageData, setImageData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('https://swapi.co/api/people/')
+      .then((result) => setSwapiData(result.data.results))
+      .catch(() => console.log('Error retrieving data from swapi.'));
+
+    axios
+      .get('https://cdn.rawgit.com/akabab/starwars-api/0.2.1/api/all.json')
+      .then((result) => setImageData(result.data))
+      .catch(() => console.log('Error retrieving data from starwas-api.'));
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <CardColumns className="p-4">
+        {swapiData.map((character) => (
+          <CharacterCard
+            key={character.url}
+            character={character}
+            image={imageData.filter((person) => (
+              person.name === character.name
+            ))}
+          />
+        ))}
+      </CardColumns>
+    </>
   );
+};
 
 
 export default App;
